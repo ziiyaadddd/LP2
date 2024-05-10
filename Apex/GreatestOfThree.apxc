@@ -1,0 +1,45 @@
+public class GreatestNumberFinder {
+
+    // Method to find the greatest among three numbers
+    public static Integer findGreatest(Integer num1, Integer num2, Integer num3) {
+        if (num1 == num2 && num2 == num3) {
+            // All three numbers are equal
+            throw new AllNumbersEqualException('All three numbers are equal.');
+        } else if ((num1 == num2 && num2 != num3) || 
+                   (num1 == num3 && num1 != num2) || 
+                   (num2 == num3 && num2 != num1)) {
+            // Two numbers are equal
+            throw new TwoNumbersEqualException('Two numbers are equal.');
+        } else {
+            // Find the greatest number among three
+            Integer greatest = num1; // Assume num1 is the greatest initially
+
+            if (num2 > greatest) {
+                greatest = num2;
+            }
+
+            if (num3 > greatest) {
+                greatest = num3;
+            }
+
+            return greatest;
+        }
+    }
+    
+    // Custom exception class for all numbers equal
+    public class AllNumbersEqualException extends Exception {}
+    
+    // Custom exception class for two numbers equal
+    public class TwoNumbersEqualException extends Exception {}
+}
+
+
+//Debug Console
+try {
+    Integer greatestNumber = GreatestNumberFinder.findGreatest(10, 20, 30);
+    System.debug('The greatest number is: ' + greatestNumber);
+} catch (GreatestNumberFinder.AllNumbersEqualException e) {
+    System.debug('Error: All three numbers are equal.');
+} catch (GreatestNumberFinder.TwoNumbersEqualException e) {
+    System.debug('Error: Two numbers are equal.');
+}
