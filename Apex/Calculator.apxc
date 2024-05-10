@@ -1,0 +1,57 @@
+public class calc {
+
+    public static void add(Decimal a, Decimal b) {
+        system.debug(a + b);
+    }
+
+    public static void subtract(Decimal a, Decimal b) {
+        system.debug(a - b);
+    }
+
+    public static void multiply(Decimal a, Decimal b) {
+        system.debug(a * b);
+    }
+
+    public static void divide(Decimal a, Decimal b) {
+        if (b == 0) {
+            system.debug('Cannot divide by zero');
+        }
+        system.debug(a / b);
+    }
+    
+     public static void power(Integer x, Integer y)
+    {
+        Double result = Math.pow(x,y);
+        system.debug('Power: ' + x + ' ^ ' + y + ' = ' + result);
+    }
+    
+    public static void absolute(Integer x)
+    {
+        Integer result = Math.abs(x);
+        system.debug('Absolute of: ' + x + ' = ' + result);
+    }
+    
+    public static void modulus(Integer x, Integer y)
+    {
+        Integer result = Math.mod(x,y);
+        system.debug('Modulus: ' + x + ' % ' + y + ' = ' + result);
+    }
+    
+    public static void factorial(Integer x){
+        Integer result = 1;
+        for (Integer i=2; i<=x; i++)
+        {
+            result *= i;
+        }
+        system.debug('Factorial of: ' + x + ' = ' + result);
+    }
+
+    public static void main() {
+        multiply(2, 5);
+    }
+
+}
+
+//Debug Console
+calc.add(2,5);
+calc.main();
