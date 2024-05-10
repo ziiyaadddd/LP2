@@ -1,0 +1,47 @@
+public class StudentMarkSheet {
+    
+    // Inner class to represent a student
+    public class Student {
+        public String name;
+        public Decimal mathScore;
+        public Decimal scienceScore;
+        public Decimal englishScore;
+        
+        public Student(String name, Decimal mathScore, Decimal scienceScore, Decimal englishScore) {
+            this.name = name;
+            this.mathScore = mathScore;
+            this.scienceScore = scienceScore;
+            this.englishScore = englishScore;
+        }
+        
+        // Calculate total marks
+        public Decimal calculateTotal() {
+            return mathScore + scienceScore + englishScore;
+        }
+        
+        // Calculate average marks
+        public Decimal calculateAverage() {
+            return calculateTotal() / 3;
+        }
+    }
+    
+    // Method to generate mark sheet for a student
+    public static void generateMarkSheet(Student student) {
+        System.debug('Student Name: ' + student.name);
+        System.debug('Math Score: ' + student.mathScore);
+        System.debug('Science Score: ' + student.scienceScore);
+        System.debug('English Score: ' + student.englishScore);
+        System.debug('Total Marks: ' + student.calculateTotal());
+        System.debug('Average Marks: ' + student.calculateAverage());
+    }
+    
+    // Example usage:
+    public static void exampleUsage() {
+        Student student1 = new Student('John Doe', 85, 90, 78);
+        generateMarkSheet(student1);
+    }
+}
+
+// example
+// StudentMarkSheet.Student student1 = new StudentMarkSheet.Student('Alice Smith', 78, 85, 92);
+// StudentMarkSheet.generateMarkSheet(student1);
