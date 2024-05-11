@@ -84,5 +84,10 @@ def main():
     if not any([has_allergies, has_fever, has_cold, has_flu, has_strep_throat, has_food_poisoning, has_appendicitis]):
         print("No specific diagnosis could be made based on the provided symptoms.")
 
+    feedback = input("\nWas the diagnosis helpful? (y/n): ").strip().lower()
+    if feedback == 'y':
+        print("Thank you for your feedback!")
+    else:
+        print("We're sorry we couldn't help you better. Please consult a healthcare professional for further assistance.")
 
 main()
