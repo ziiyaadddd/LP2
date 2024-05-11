@@ -19,7 +19,7 @@ public:
         return true;
     }
 
-    bool btrack(int row) {
+    bool branchbound(int row) {
         if (row == gsize) {
             display();
             return true;
@@ -49,7 +49,7 @@ public:
         cout << endl;
     }
 
-    void branchbound(int row) {
+    void btrack(int row) {
         if (row == gsize) {
             display();
             return;
