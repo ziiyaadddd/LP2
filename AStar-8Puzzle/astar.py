@@ -91,3 +91,7 @@ if __name__ == "__main__":
     goal_state = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
     solution = solve_8_puzzle(initial_state, goal_state)
     print_solution(initial_state, solution)
+
+
+//Time Complexity
+O(b^d) b is branching factor and d is depth
