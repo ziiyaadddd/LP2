@@ -69,11 +69,11 @@ int main() {
     cin >> size;
     NQueens q1(size);
     NQueens q2(size);
-    cout << "\nBranch and Bound Solution:\n";
+    cout << "\nBacktracking Solution:\n";
     if (!q1.btrack(0)){
         cout << "No solution exists.\n";
     }
-    cout << "\nBackTracking Solution:\n";
+    cout << "\nBranch and Bound Solution:\n";
     q2.branchbound(0);
     return 0;
 }
