@@ -21,6 +21,7 @@ class AirlineSystem:
     def __init__(self):
         self.flights = []
         self.cargos = []
+        self.cargo_weight_limit = 100  # Setting cargo weight limit
 
     def add_flight(self, flight_number, departure, arrival, date):
         flight = Flight(flight_number, departure, arrival, date)
@@ -32,9 +33,12 @@ class AirlineSystem:
 
     def display_flights(self, departure, arrival):
         print(f"Available Flights from {departure} to {arrival}:")
-        for idx, flight in enumerate(self.flights, start=1):
-            if flight.departure.lower() == departure and flight.arrival.lower() == arrival:
+        available_flights = [flight for flight in self.flights if flight.departure.lower() == departure and flight.arrival.lower() == arrival]
+        if available_flights:
+            for idx, flight in enumerate(available_flights, start=1):
                 print(f"{idx}. Flight Number: {flight.flight_number}, Date: {flight.date}")
+        else:
+            print("No available flights for the selected route.")
 
     def get_cargo_price(self, origin, destination, weight):
         return 20 * weight
@@ -47,13 +51,18 @@ class AirlineSystem:
         origin = self.validate_location("Enter origin location: ")
         destination = self.validate_location("Enter destination location: ")
         weight = float(input("Enter weight (in kg): "))
+
+        if weight > self.cargo_weight_limit:
+            print("Cargo weight exceeds the limit. Please choose a lower weight.")
+            return
+
         price = self.get_cargo_price(origin, destination, weight)
         print(f"Price for shipping cargo from {origin} to {destination} with weight {weight} kg: ${price}")
 
         self.display_flights(origin, destination)
 
-        flight_choice = int(input("Enter the number of the flight you choose: "))
-        selected_flight = self.flights[flight_choice - 1]
+        flight_choice = self.validate_flight_choice("Enter the number of the flight you choose: ", origin, destination)
+        selected_flight = [flight for flight in self.flights if flight.departure.lower() == origin and flight.arrival.lower() == destination][flight_choice - 1]
 
         # Increase price by $30 for the earliest flight
         if selected_flight == min(self.flights, key=lambda x: x.date):
@@ -72,16 +81,33 @@ class AirlineSystem:
             else:
                 print("Wrong input. Please enter a valid location.")
 
+    def validate_flight_choice(self, message, origin, destination):
+        available_flights = [flight for flight in self.flights if flight.departure.lower() == origin and flight.arrival.lower() == destination]
+        while True:
+            try:
+                flight_choice = int(input(message))
+                if 1 <= flight_choice <= len(available_flights):
+                    return flight_choice
+                else:
+                    print("Invalid flight number. Please enter a number from the list.")
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+
     def book_flight(self):
         print("\nFlight Booking:")
         departure = self.validate_location("Enter departure location: ")
         arrival = self.validate_location("Enter arrival location: ")
 
+        available_flights = [flight for flight in self.flights if flight.departure.lower() == departure and flight.arrival.lower() == arrival]
+
+        if not available_flights:
+            print("No available flights for the selected route.")
+            return
+
         self.display_flights(departure, arrival)
 
-        flight_choice = int(input("Enter the number of the flight you choose: "))
-        selected_flight = self.flights[flight_choice - 1]
-
+        flight_choice = self.validate_flight_choice("Enter the number of the flight you choose: ", departure, arrival)
+        selected_flight = available_flights[flight_choice - 1]
         print(f"You have booked flight {selected_flight.flight_number} from {selected_flight.departure} to {selected_flight.arrival} on {selected_flight.date}.")
 
 def main():
@@ -105,6 +131,9 @@ def main():
         elif choice == 'f':
             airline_system.book_flight()
         elif choice == 'q':
+            feedback = input("Please provide feedback: ")
+            print("Thank you for your feedback.")
+            print("For further assistance, please contact us at support@example.com or call us at +123456789.")
             print("Thank you for using the system. Goodbye!")
             break
         else:
