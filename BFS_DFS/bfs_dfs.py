@@ -118,3 +118,10 @@ def main():
 
 
 main()
+
+
+
+//BFS DFS
+//Time Complexity for both is O(V+E) where V - vertices and E - Edges
+for both best and worst case
+space complexity for both is O(V)
