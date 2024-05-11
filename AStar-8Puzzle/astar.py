@@ -13,7 +13,7 @@ class PuzzleNode:
         return (self.cost + self.heuristic) < (other.cost + other.heuristic)
 
 def manhattan_distance(state: List[List[int]]) -> int:
-    goal_state = [[2, 8, 1], [0, 4, 3], [7, 6, 5]]
+    goal_state = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
     distance = 0
     for i in range(3):
         for j in range(3):
