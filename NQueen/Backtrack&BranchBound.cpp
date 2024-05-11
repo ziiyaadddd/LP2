@@ -19,7 +19,7 @@ public:
         return true;
     }
 
-    bool branchbound(int row) {
+    bool btrack(int row) {
         if (row == gsize) {
             display();
             return true;
@@ -49,7 +49,7 @@ public:
         cout << endl;
     }
 
-    void btrack(int row) {
+    void branchbound(int row) {
         if (row == gsize) {
             display();
             return;
@@ -57,7 +57,7 @@ public:
         for (int col = 0; col < gsize; ++col) {
             if (isSafe(row, col)) {
                 gpos[row] = col;
-                btrack(row + 1);
+                branchbound(row + 1);
             }
         }
     }
