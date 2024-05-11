@@ -57,7 +57,7 @@ public:
         for (int col = 0; col < gsize; ++col) {
             if (isSafe(row, col)) {
                 gpos[row] = col;
-                branchbound(row + 1);
+                btrack(row + 1);
             }
         }
     }
