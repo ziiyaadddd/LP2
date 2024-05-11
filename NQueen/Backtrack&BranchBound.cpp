@@ -64,27 +64,16 @@ public:
 };
 
 int main() {
-
     int size;
-    // Prompt the user to enter the size of the chessboard (grid size)
     cout << "Enter the size of the chessboard (grid size): ";
-    // Read the input size
     cin >> size;
-    // Check if the input size is within the range [1, 8]
-    while (size < 1 || size > 8) {
-        cout << "Invalid input! Please enter a size between 1 and 8: ";
-        cin >> size;
-    }
-    // Create instances of NQueens with the valid input size
     NQueens q1(size);
     NQueens q2(size);
-
-    // Proceed with the rest of the code
-    cout << "\nBacktracking Solution:\n";
-    if (!q1.btrack(0)) {
+    cout << "\nBranch and Bound Solution:\n";
+    if (!q1.btrack(0)){
         cout << "No solution exists.\n";
     }
-    cout << "\nBranch and Bound Solution:\n";
+    cout << "\nBackTracking Solution:\n";
     q2.branchbound(0);
     return 0;
 }
