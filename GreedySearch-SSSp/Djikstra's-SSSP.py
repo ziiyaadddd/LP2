@@ -60,3 +60,7 @@ def main():
 
 
 main()
+
+
+//Time Complexity
+// O(V^2) but by using min priority queue it becomes O(V+E Log V)
