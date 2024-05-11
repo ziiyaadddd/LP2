@@ -80,3 +80,7 @@ def main():
 
 
 main()
+
+
+//Time Complexity
+O(E Log E)
